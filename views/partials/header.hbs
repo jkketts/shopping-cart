@@ -1,0 +1,46 @@
+<nav class="navbar">
+
+  <!-- Left side of Navbar --> 
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      Afi's Soaps!
+    </a>
+  </div>
+  
+  <!-- Right side of Navbar --> 
+  <div class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item">
+              <a class="navbar-item" href="/shopping-cart">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                 Shopping Cart
+                 <span class="tag is-info is-rounded">{{session.cart.totalQty}}</span>
+              </a>
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link is-active" href="#">
+                  User Management
+              </a>
+              <div class="navbar-dropdown">
+                  {{# if login }}
+                  <a class="navbar-item" href="/user/profile">
+                      User Account
+                  </a>
+                  <a class="navbar-item" href="/user/logout">
+                      Logout
+                  </a>
+                  {{ else }}
+                  <a class="navbar-item" href="/user/signup">
+                      Sign Up
+                  </a>
+                  <a class="navbar-item" href="/user/signin">
+                      Sign In
+                  </a>
+                  {{/if}}
+    
+              </div>
+          </div>
+      </div>
+  </div>
+  
+</nav>
