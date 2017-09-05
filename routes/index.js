@@ -1,9 +1,7 @@
-const keySecret = 'sk_test_jdtWrvpPPYGflOgVkYSKFd57';
-
 var express = require('express');
 var router = express.Router();
 var Cart = require('../models/cart');
-const stripe = require('stripe')(keySecret);
+const stripe = require('stripe')(process.env.KEY_SECRET);
 
 var Product = require('../models/product');
 

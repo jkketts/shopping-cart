@@ -1,5 +1,3 @@
-const keyPublishable = 'pk_test_v6vwjK0426oBc7qeSreWzYlb';
-
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -19,7 +17,16 @@ var index = require('./routes/index');
 
 var app = express();
 
-mongoose.connect('localhost:27017/shopping');
+var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/shopping';
+
+mongoose.connect(uristring, function(err, res){
+    if(err) {
+        console.log('ERROR connecting to: ' + uristring + '. ' + err);
+    } else {
+        console.log('Succeeded connected to: ' + uristring);
+    }
+});
+
 require('./config/passport'); //load so this config is used
 
 // view engine setup
