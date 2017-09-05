@@ -1,3 +1,5 @@
+const keyPublishable = 'pk_test_v6vwjK0426oBc7qeSreWzYlb';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

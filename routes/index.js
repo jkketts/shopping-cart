@@ -1,6 +1,9 @@
+const keySecret = 'sk_test_jdtWrvpPPYGflOgVkYSKFd57';
+
 var express = require('express');
 var router = express.Router();
 var Cart = require('../models/cart');
+const stripe = require('stripe')(keySecret);
 
 var Product = require('../models/product');
 
@@ -41,6 +44,27 @@ router.get('/shopping-cart', function(req, res, next) {
     }
     var cart = new Cart(req.session.cart);
     res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+});
+
+router.get('/checkout', function(req,res,next){
+    res.render('shop/checkout', {totalPrice: (req.session.cart.totalPrice)*100, totalQty: req.session.cart.totalQty});
+});
+
+router.post("/charge", function(req, res, next){
+    let amount = req.session.cart.totalPrice * 100;
+    
+    stripe.customers.create({
+        email: req.body.stripeEmail,
+        source: req.body.stripeToken
+    })
+    .then(customer =>
+         stripe.charges.create({
+            amount,
+            description:"Sample Charge",
+               currency:"usd",
+               customer: customer.id
+    }))
+    .then(charge => res.render('shop/charge', {amount: req.amount}))
 });
 
 module.exports = router;
