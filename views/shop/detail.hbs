@@ -1,0 +1,27 @@
+<div class="columns">
+
+    <div class="column is-one-third">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="{{product.imagePath}}" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="title">
+                <h2>{{product.title}}</h2>
+            </div>
+
+            <div class="content is-clearfix">
+              {{product.desc}}
+              <br><br>
+              <div class="is-pulled-left">
+                  <p class="price">${{product.price}}</p>
+              </div>
+              <a class="button is-success is-pulled-right is-medium" href="/add-to-cart/{{product._id}}"><strong>Add to Cart</strong></a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</div>

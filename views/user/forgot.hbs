@@ -1,0 +1,17 @@
+
+<div class="columns">
+    <div class="column"></div>
+    <div class="column">
+        <form method="post" action="/user/forgot">
+            <div class="field">
+                <label class="label">Email</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Email" name="email">
+                    </div>
+            </div>
+            <input type="hidden" id="csrf" name="_csrf" value="{{ csrfToken }}">
+            <button type="submit" class="button is-info is-pulled-right">Send my password</button>
+        </form>
+    </div>
+    <div class="column"></div>
+</div>

@@ -1,0 +1,53 @@
+<div class="columns">
+    <div class="column"></div>
+        
+        <div class="column">
+            <h3>Password Confirmation!</h3>
+            <form>
+                <label for="newPassword">New Password</label>
+                <input type="password" name="password" id ="newPassword" required>
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" required>
+                <input type="hidden" id="csrf" name="_csrf" value="{{ csrfToken }}">
+                <input type="submit" class="is-info button is-pulled-right" id="resetPasswordClickEvt" value="Reset Password">
+            </form>
+        </div>
+    <div class="column"></div>
+    
+</div>
+
+
+<script type="text/javascript">
+    var resetPasswordClickEvt = document.getElementById('resetPasswordClickEvt');
+    
+    resetPasswordClickEvt.addEventListener('click', resetPasswordClicked);
+    
+    function resetPasswordClicked(event) {
+        event.preventDefault();
+        var token = document.location.href.split('token=')[1];
+        var data = "newPassword=" + document.getElementById('newPassword').value + '&confirmPassword=' + document.getElementById('confirmPassword').value + '&token=' + token;    
+        ajaxCall(data, "http://localhost:3000/user/reset", function(status, response){
+            if(status == 200) {
+                alert('successfully sent');
+            } else {
+                alert('Error', status);
+            }
+        });
+    }
+    
+    function ajaxCall(data, url, callback) {
+        var xhttp = new XMLHttpRequest();
+        var csrfToken = document.getElementById('csrf').value;
+        xhttp.open("POST", url, true);
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                return callback(this.status, JSON.parse(xhttp.response));
+            }
+        }
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.setRequestHeader("X-CSRF-Token", csrfToken);
+        xhttp.send(data);
+    }
+    
+        
+</script>

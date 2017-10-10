@@ -1,0 +1,51 @@
+
+<section class="hero is-medium is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Primary bold title
+      </h1>
+      <h2 class="subtitle">
+        Primary bold subtitle
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+{{# each products}}
+
+<div class="columns">
+
+    {{# each this}}
+    <div class="column is-one-third">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="{{this.imagePath}}" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="title">
+                <h2><a href="/detail/{{this._id}}">{{this.title}}</a></h2>
+            </div>
+
+            <div class="content is-clearfix">
+              {{this.desc}}
+              <br><br>
+              <div class="is-pulled-left">
+                  <p class="price">${{this.price}}</p>
+              </div>
+              <a class="button is-success is-pulled-right is-medium" href="/add-to-cart/{{this._id}}"><strong>Add to Cart</strong></a>
+            </div>
+          </div>
+        </div>
+    </div>
+                
+    {{/each}}
+    
+
+
+</div>
+
+{{/each}}

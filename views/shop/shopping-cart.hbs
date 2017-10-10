@@ -1,0 +1,41 @@
+<div class="columns">
+    {{# if products}}
+    <div class="column"></div>
+    <div class="column">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Item
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{# each products}}
+                <tr>
+                    <td>{{this.item.title}}</td>
+                    <td>{{this.item.price}}</td>
+                    <td>{{this.qty}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="column"></div>
+       {{else}}
+    <div class="column is-two-thirds">
+        <h1>No products</h1>
+    </div>
+       {{/if}}
+
+   <div class="column is-one-third">
+        <a href="/checkout"><button class="button has-text-centered">Checkout</button></a>
+    </div>
+</div>

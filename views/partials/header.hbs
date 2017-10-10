@@ -1,0 +1,81 @@
+<nav class="navbar">
+
+  <!-- Left side of Navbar --> 
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      Afi's Soaps!
+    </a>
+  </div>
+  
+  <!-- Right side of Navbar --> 
+  <div class="navbar-menu">
+      <div class="navbar-end">
+          <div class="navbar-item">
+            <p class="control has-icons-left">
+              <input class="input is-small" type="text" placeholder="search">
+              <span class="icon is-small is-left">
+                <i class="fa fa-search"></i>
+              </span>
+            </p>
+          </div>
+
+         {{#if session.cart.items}}
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link is-active" href="#">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                 Shopping Cart
+                 <span class="tag is-info is-rounded">{{session.cart.totalQty}}</span>
+              </a>
+                      <div class="navbar-dropdown">
+
+                     {{#each session.cart.items}}
+                          <a class="navbar-item" href="/detail/{{this.item._id}}">
+                            {{#each this}}
+                                {{this.title}}
+                            {{/each}}
+                                {{this.qty}}
+                          </a>
+                     {{/each}}
+                        <hr class="navbar-divider">
+                        <div class="navbar-item">
+                            Cart Total: ${{session.cart.totalPrice}}
+                          </div>
+                      </div>
+                
+          </div>
+            {{else}}
+                <div class="navbar-item">
+                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                 Shopping Cart
+                 <span class="tag is-info is-rounded">0</span>
+              </div>
+                {{/if}}
+          </div>
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link is-active" href="#">
+                  User Management
+              </a>
+              <div class="navbar-dropdown">
+                  {{# if login }}
+                  <a class="navbar-item" href="/user/profile">
+                      User Account
+                  </a>
+                  <a class="navbar-item" href="/user/logout">
+                      Logout
+                  </a>
+                  {{ else }}
+                  <a class="navbar-item" href="/user/signup">
+                      Sign Up
+                  </a>
+                  <a class="navbar-item" href="/user/signin">
+                      Sign In
+                  </a>
+                  {{/if}}
+    
+              </div>
+          </div>
+      </div>
+  
+</nav>
+
+
